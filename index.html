@@ -14,6 +14,9 @@
 <h3>Kurssit</h3>
 <div class="kaikki-kurssit clearfix">
 </div>
+<p>Optimoi halutessasi muun tuntimäärän mukaan</p>
+<input type="text" class="annettu-tuntimaara" placeholder="200" /><br/>
+<button type="button" class="optimoi">Optimoi</button>
 <p>Optimaalisin valinta: </p>
 <div class="lopputulos">
 
@@ -25,7 +28,7 @@ $(document).ready(function(){
 	}
 	//console.log(knapsack([{w:200, b: 20},{w:40,b:2},{w:20,b:5},{w:10,b:1},{w:90,b:9},{w:100,b:17}], 200));
 	
-	tulostaOptimi();
+	$('.optimoi').on('click', tulostaOptimi);
 	
 	$(document).on('click', '.poista-painike', function(){
 		$(this).parents('.yksi-kurssi').remove();
@@ -35,7 +38,6 @@ $(document).ready(function(){
 				kaikkiKurssit.splice(i, 1);
 			}
 		}
-		tulostaOptimi();
 	});
 });
 </script>

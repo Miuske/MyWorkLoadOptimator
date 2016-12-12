@@ -15,7 +15,12 @@ kaikkiKurssit.push(new kurssi("ohjelmointi", 9, 90));
 kaikkiKurssit.push(new kurssi("lopputyö", 17, 100));
 
 function tulostaOptimi(){
-	var tulos = knapsack(kaikkiKurssit, 200);
+	var annetutTunnit = $('.annettu-tuntimaara').val();
+	if(annetutTunnit){
+		var tulos = knapsack(kaikkiKurssit, annetutTunnit);
+	} else {
+		var tulos = knapsack(kaikkiKurssit, 200);
+	}
 	console.log(tulos);
 	var tunnitYhteensa = 0;
 	$('.lopputulos').html('');

@@ -25,30 +25,18 @@ $(document).ready(function(){
 	}
 	//console.log(knapsack([{w:200, b: 20},{w:40,b:2},{w:20,b:5},{w:10,b:1},{w:90,b:9},{w:100,b:17}], 200));
 	
-	for(var i = 0; i < tulos['set'].length; i++){
-		for(var kyseinenkurssi in kaikkiKurssit){
-			if(kaikkiKurssit[kyseinenkurssi].b == tulos['set'][i].b){
-				$('.lopputulos').append('<p>'+kaikkiKurssit[kyseinenkurssi].nimi+'</p>');
-			}
-		}
-		$('.lopputulos').append('<p>'+tulos['set'][i].w+' tuntia, '+tulos['set'][i].b+' opintopistettä</p>');
-		tunnit += tulos['set'][i].w;
-		opintopisteet += tulos['set'][i].b;
-	}
+	tulostaOptimi();
 	
 	$(document).on('click', '.poista-painike', function(){
 		$(this).parents('.yksi-kurssi').remove();
 		var poistettavaId = $(this).parents('.yksi-kurssi').attr('id');
-		for(var kurssit in kaikkiKurssit){
-			if(kaikkiKurssit[kurssit].id == poistettavaId){
-				console.log(poistettavaId);
-				var index = kaikkiKurssit[kurssit].indexOf();
-				console.log(index);
+		for(var i = 0; i < kaikkiKurssit.length; i++){
+			if(kaikkiKurssit[i].id == poistettavaId){
+				kaikkiKurssit.splice(i, 1);
 			}
 		}
+		tulostaOptimi();
 	});
-	
-	$('.lopputulos').append('<p>Yhteensä: '+tunnit+' tuntia, '+opintopisteet+' opintopistettä</p>');
 });
 </script>
 </body>

@@ -32,9 +32,7 @@
 </div>
 <script>
 $(document).ready(function(){
-	for(var kurssi in kaikkiKurssit){
-		$('.kaikki-kurssit').append('<div class="yksi-kurssi" id="'+kaikkiKurssit[kurssi].id+'"><div>'+kaikkiKurssit[kurssi].nimi+'</div><div>'+kaikkiKurssit[kurssi].b+'</div><div>'+kaikkiKurssit[kurssi].w+'</div><button type="button" class="poista-painike">Poista kurssi</button></div>');
-	}
+	paivitaLista();
 	//console.log(knapsack([{w:200, b: 20},{w:40,b:2},{w:20,b:5},{w:10,b:1},{w:90,b:9},{w:100,b:17}], 200));
 	
 	$('.optimoi').on('click', tulostaOptimi);

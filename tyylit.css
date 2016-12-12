@@ -1,0 +1,8 @@
+body {
+	font-family: "Arial", san-serif;
+}
+
+.yksi-kurssi > div{
+	display: inline-block;
+	padding: 0 5px 10px;
+}

@@ -33,9 +33,36 @@
 <script>
 $(document).ready(function(){
 	for(var kurssi in kaikkiKurssit){
-		$('.kaikki-kurssit').append('<div class="yksi-kurssi" id="'+kaikkiKurssit[kurssi].id+'"><div>'+kaikkiKurssit[kurssi].nimi+'</div><div>'+kaikkiKurssit[kurssi].b+'</div><div>'+kaikkiKurssit[kurssi].w+'</div><button type="button" class="poista-painike">Poista kurssi</button></div>');
+		$('.kaikki-kurssit').append('<div class="yksi-kurssi" id="'+kaikkiKurssit[kurssi].id+'"><div>'+kaikkiKurssit[kurssi].nimi+'</div><div class="oparit">'+kaikkiKurssit[kurssi].b+'</div><div class="tyotunnit">'+kaikkiKurssit[kurssi].w+'</div><button type="button" class="muokkaa-painike" data-tila="valmis">Muokkaa</button><button type="button" class="poista-painike">Poista</button></div>');
 	}
-	//console.log(knapsack([{w:200, b: 20},{w:40,b:2},{w:20,b:5},{w:10,b:1},{w:90,b:9},{w:100,b:17}], 200));
+	
+	$(document).on('click', '.muokkaa-painike', function(){
+	if($(this).attr("data-tila") == "valmis"){
+		$(this).attr("data-tila", "muokkaa");
+		var oparitArvo = $(this).siblings('.oparit').text();
+		var tyotunnitArvo = $(this).siblings('.tyotunnit').text();
+		$(this).siblings('.oparit').html('<input type="number" value="'+oparitArvo+'" />');
+		$(this).siblings('.tyotunnit').html('<input type="number" value="'+tyotunnitArvo+'" />');
+		$(this).text("Valmis");
+	} else {
+		$(this).attr("data-tila", "valmis");
+		var oparitArvo = $(this).siblings('.oparit').find('input').val();
+		var tyotunnitArvo = $(this).siblings('.tyotunnit').find('input').val();
+		$(this).siblings('.oparit').html(oparitArvo);
+		$(this).siblings('.tyotunnit').html(tyotunnitArvo);
+		var muokattavaId = $(this).parents('.yksi-kurssi').attr('id');
+		for(var i = 0; i < kaikkiKurssit.length; i++){
+			if(kaikkiKurssit[i].id == muokattavaId){
+				kaikkiKurssit[i].b = parseInt(oparitArvo);
+				kaikkiKurssit[i].w = parseInt(tyotunnitArvo);
+			}
+		}
+		for(var kurssit in kaikkiKurssit){
+		console.log(kaikkiKurssit[kurssit]);
+		}
+		$(this).text("Muokkaa");
+	}
+	});
 	
 	$('.optimoi').on('click', tulostaOptimi);
 	

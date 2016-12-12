@@ -5,7 +5,8 @@ var opintopisteet = 0;
 function kurssi(kurssinnimi, opintopisteet, tyomaara) {
 	this.b = opintopisteet;
 	this.w = tyomaara;
-	this.nimi = kurssinnimi
+	this.nimi = kurssinnimi;
+	this.id = kurssinnimi.replace(/\s/g, '');
 }
 
 kaikkiKurssit.push(new kurssi("projekti", 20, 200));

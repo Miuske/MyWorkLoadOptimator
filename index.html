@@ -4,6 +4,7 @@
 <script src="knapsack.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="tiedot.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="tyylit.css">
 </head>
 <body>
@@ -11,8 +12,7 @@
 <p>Silja Karesto & Mia Leskinen</p>
 
 <h3>Kurssit</h3>
-<div class="kaikki-kurssit">
-<div class="yksi-kurssi"></div>
+<div class="kaikki-kurssit clearfix">
 </div>
 <p>Optimaalisin valinta: </p>
 <div class="lopputulos">
@@ -21,7 +21,7 @@
 <script>
 $(document).ready(function(){
 	for(var kurssi in kaikkiKurssit){
-		$('.kaikki-kurssit').append('<div class="yksi-kurssi"><div>'+kaikkiKurssit[kurssi].nimi+'</div><div>'+kaikkiKurssit[kurssi].b+'</div><div>'+kaikkiKurssit[kurssi].w+'</div></div>');
+		$('.kaikki-kurssit').append('<div class="yksi-kurssi" id="'+kaikkiKurssit[kurssi].id+'"><div>'+kaikkiKurssit[kurssi].nimi+'</div><div>'+kaikkiKurssit[kurssi].b+'</div><div>'+kaikkiKurssit[kurssi].w+'</div><button type="button" class="poista-painike">Poista kurssi</button></div>');
 	}
 	//console.log(knapsack([{w:200, b: 20},{w:40,b:2},{w:20,b:5},{w:10,b:1},{w:90,b:9},{w:100,b:17}], 200));
 	
@@ -35,6 +35,18 @@ $(document).ready(function(){
 		tunnit += tulos['set'][i].w;
 		opintopisteet += tulos['set'][i].b;
 	}
+	
+	$(document).on('click', '.poista-painike', function(){
+		$(this).parents('.yksi-kurssi').remove();
+		var poistettavaId = $(this).parents('.yksi-kurssi').attr('id');
+		for(var kurssit in kaikkiKurssit){
+			if(kaikkiKurssit[kurssit].id == poistettavaId){
+				console.log(poistettavaId);
+				var index = kaikkiKurssit[kurssit].indexOf();
+				console.log(index);
+			}
+		}
+	});
 	
 	$('.lopputulos').append('<p>Yhteensä: '+tunnit+' tuntia, '+opintopisteet+' opintopistettä</p>');
 });

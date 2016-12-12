@@ -14,6 +14,19 @@ kaikkiKurssit.push(new kurssi("keikka", 1, 10));
 kaikkiKurssit.push(new kurssi("ohjelmointi", 9, 90));
 kaikkiKurssit.push(new kurssi("lopputyö", 17, 100));
 
+function lisaaUusiKurssi(){
+	var uusikurssi = document.getElementById("lisaakurssi").value;
+	var uusiopt = document.getElementById("lisaaopt").value;
+	var uusitunnit = document.getElementById("lisaatunnit").value;
+	
+	console.log("UUDEN KURSSIN NIMI: " + uusikurssi);
+	console.log("UUDEN KURSSIN OPT: " + uusiopt);
+	console.log("UUDEN KURSSIN TUNNIT: " + uusitunnit);
+	
+	kaikkiKurssit.push(new kurssi(uusikurssi, uusiopt, uusitunnit));
+	console.log(kaikkiKurssit);
+}
+
 function tulostaOptimi(){
 	var annetutTunnit = $('.annettu-tuntimaara').val();
 	if(annetutTunnit){
@@ -35,3 +48,4 @@ function tulostaOptimi(){
 	}
 	$('.lopputulos').append('<br/><p>Yhteensä: '+tunnitYhteensa+' tuntia, '+tulos.maxValue+' opintopistettä</p>');
 }
+

@@ -11,6 +11,15 @@
 <h1>My Workload Optimator</h1>
 <p>Silja Karesto & Mia Leskinen</p>
 
+<form>
+	<h3>Lisää kurssi</h3>
+	<p>Kurssin nimi: <input id="lisaakurssi" type="text"></input>
+	Opintopisteet: <input id="lisaaopt" type="text"></input>
+	Tunnit: <input id="lisaatunnit" type="text"></input>
+	<button id="lisaa-painike" type="button" onclick="lisaaUusiKurssi();">Lisää kurssi</button>
+	</p>
+</form>
+
 <h3>Kurssit</h3>
 <div class="kaikki-kurssit clearfix">
 </div>
@@ -39,6 +48,7 @@ $(document).ready(function(){
 			}
 		}
 	});
+	
 });
 </script>
 </body>

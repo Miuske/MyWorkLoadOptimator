@@ -18,6 +18,19 @@ body {
 	padding: 30px 60px 80px 60px;
 }
 
+.otsikko {
+	background-color: #333;
+	width: 100%;
+	color: #fff;
+	padding: 10px 95px 20px 95px;
+}
+
+.otsikko-sisalto {
+	width: 65%;
+	margin: auto;
+	padding: 0 35px;
+}
+
 @media screen and (max-width: 850px){
 	#frame {
 		width: 100%;
@@ -26,13 +39,11 @@ body {
 	.kaikki-kurssit {
 		width: 100%;
 	}
-}
-
-.otsikko {
-	background-color: #333;
-	width: 100%;
-	color: #fff;
-	padding: 10px 35px 20px 35px;
+	
+	.otsikko-sisalto {
+		width: 100%;
+		padding: 0;
+	}
 }
 
 .varoitus {

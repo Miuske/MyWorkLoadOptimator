@@ -17,7 +17,7 @@ kaikkiKurssit.push(new kurssi("lopputyö", 17, 100));
 function paivitaLista(){
 	$('.kaikki-kurssit').html("");
 	for(var kurssi in kaikkiKurssit){
-		$('.kaikki-kurssit').append('<div class="yksi-kurssi" id="'+kaikkiKurssit[kurssi].id+'"><div>'+kaikkiKurssit[kurssi].nimi+'</div><div class="oparit">'+kaikkiKurssit[kurssi].b+'</div><div class="tyotunnit">'+kaikkiKurssit[kurssi].w+'</div><button type="button" class="muokkaa-painike" data-tila="valmis">Muokkaa</button><button type="button" class="poista-painike">Poista</button></div>');
+		$('.kaikki-kurssit').append('<div class="yksi-kurssi" id="'+kaikkiKurssit[kurssi].id+'"><div>'+kaikkiKurssit[kurssi].nimi+'</div><div class="oparit">'+kaikkiKurssit[kurssi].b+'</div><div class="tyotunnit">'+kaikkiKurssit[kurssi].w+'</div><button type="button" class="muokkaa-painike" data-tila="valmis">Muokkaa</button> <i class="poista-painike fa fa-trash-o fa-lg"></i></div>');
 	}
 }
 

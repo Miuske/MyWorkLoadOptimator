@@ -11,10 +11,21 @@ body {
 }
 
 #frame {
-	width: 80%;
+	width: 100%;
 	margin: auto;
-	background-color: #eee;
 	padding: 30px 60px 80px 60px;
+}
+
+.otsikko {
+	background-color: #333;
+	width: 100%;
+	color: #fff;
+	padding: 10px 35px 20px 35px;
+}
+
+.sisalto {
+	padding: 10px 35px 20px 35px;
+	margin: 0px; 
 }
 
 .kaikki-kurssit, .optimoinnin-tulos {

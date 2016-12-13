@@ -20,29 +20,22 @@
 		<div class="hidden-content">
 			<form id="lisaaKurssiForm">
 				<h4 class="highlight" >Lisää kurssi</h4>
-				<span>Kurssin nimi: </span><input id="lisaakurssi" type="text" placeholder="Kurssin nimi"></input>
-				<span>Opintopisteet: </span><input id="lisaaopt" type="number" min="1" placeholder="3"></input>
-				<span>Työmäärä: </span><input id="lisaatunnit" type="number" min="1" placeholder="50"></input>
+				<span>Kurssin nimi: </span><input class="form-control" id="lisaakurssi" type="text" placeholder="Kurssin nimi"></input><br />
+				<span>Opintopisteet: </span><input class="form-control" id="lisaaopt" type="number" min="1" placeholder="3"></input><br />
+				<span>Työmäärä: </span><input class="form-control" id="lisaatunnit" type="number" min="1" placeholder="50"></input><br />
 				<i id="lisaa-painike" class="lisaa-painike fa fa-arrow-right fa-lg"></i>
 				<i class="hide-content fa fa-check fa-lg"></i>
 				<p class="varoitus"></p>
 			</form>
 		</div>
-		<div class="kurssien-otsikot clearfix">
-			<div class="nimi">Nimi</div>
-			<div class="opt">Opintopisteet</div>
-			<div class="tunnit">Työmäärä</div>
-		</div>
+
 		<div class="kaikki-kurssit clearfix"></div>
 		
 		<p class="highlight" >Optimoi halutessasi muun tuntimäärän mukaan</p>
-		<!--input type="text" class="annettu-tuntimaara form-control" placeholder="200" /--> <!--a class="btn btn-success" id="optimoi-painike" href="#"><i class="fa fa-tachometer fa-lg"></i> Optimoi</a-->
 		<div class="input-group">
   			<span class="input-group-addon"><i class="fa fa-tachometer fa-fw" id="optimoi-painike"></i></span>
  			<input class=" annettu-tuntimaara form-control" type="text" placeholder="200">
 		</div>
-		
-		<!--button type="button" id="optimoi-painike">Optimoi</button-->
 		<div class="optimoinnin-tulos">
 			<p class="highlight" >Optimaalisin valinta: </p>
 			<div class="lopputulos"></div>

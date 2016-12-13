@@ -1,96 +1,60 @@
 ﻿<html>
 <head>
 <title>My Workload Optimator</title>
-<script src="knapsack.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="tiedot.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="tyylit.css">
 </head>
 <body>
-<h1>My Workload Optimator</h1>
-<p>Silja Karesto & Mia Leskinen</p>
-
-<button class="show-content">Lisää kurssi</button>
-<div class="hidden-content">
-	<form id="lisaaKurssiForm">
-		<h3>Lisää kurssi</h3>
-		<p>Kurssin nimi: <input id="lisaakurssi" type="text" placeholder="Kurssin nimi"></input>
-		Opintopisteet: <input id="lisaaopt" type="text" placeholder="3"></input>
-		Tunnit: <input id="lisaatunnit" type="text" placeholder="50"></input>
-		<button id="lisaa-painike" type="button" onclick="lisaaUusiKurssi();">Lisää kurssi</button><br>
-		<button class="hide-content">Valmis</button>
-		</p>
-	</form>
+<div class="otsikko">
+	<h1>My Workload Optimator</h1>
+	<p>Silja Karesto & Mia Leskinen</p>
 </div>
-
-<h3>Kurssit</h3>
-<div class="kaikki-kurssit clearfix">
+<div class="sisalto">
+	<h3>Kurssit</h3>
+	<button class="show-content esilla">Lisää uusi kurssi</button>
+	<div class="hidden-content">
+		<form id="lisaaKurssiForm">
+			<h4>Lisää kurssi</h4>
+			<span>Kurssin nimi: </span><input id="lisaakurssi" type="text" placeholder="Kurssin nimi"></input>
+			<span>Opintopisteet: </span><input id="lisaaopt" type="number" placeholder="3"></input>
+			<span>Tunnit: </span><input id="lisaatunnit" type="number" placeholder="50"></input>
+			<button id="lisaa-painike" type="button">Lisää kurssi</button>
+			<br />
+			<button class="hide-content">Valmis</button>
+		</form>
+	</div>
+	<div class="kaikki-kurssit clearfix"></div>
+	<p>Optimoi halutessasi muun tuntimäärän mukaan</p>
+	<input type="text" class="annettu-tuntimaara" placeholder="200" /><br/>
+	<button type="button" id="optimoi-painike">Optimoi</button>
+	<div class="optimoinnin-tulos">
+		<p>Optimaalisin valinta: </p>
+		<div class="lopputulos"></div>
+	</div>
 </div>
-<p>Optimoi halutessasi muun tuntimäärän mukaan</p>
-<input type="text" class="annettu-tuntimaara" placeholder="200" /><br/>
-<button type="button" class="optimoi">Optimoi</button>
-<p>Optimaalisin valinta: </p>
-<div class="lopputulos">
-
-</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="knapsack.js"></script>
+<script src="tiedot.js"></script>
 <script>
-$(document).ready(function(){
-	$('.hidden-content').hide();
-	
-	$('.show-content').on('click', function(){
-		$('.hidden-content').show();
-	});
-	
-	$('.hide-content').on('click', function(){
-		$('.hidden-content').hide();
-	});
-	
-	paivitaLista();
-	//console.log(knapsack([{w:200, b: 20},{w:40,b:2},{w:20,b:5},{w:10,b:1},{w:90,b:9},{w:100,b:17}], 200));
+	$(document).ready(function(){
+		paivitaLista();
+		
+		$('.show-content').on('click', function(){
+			$(this).removeClass('esilla');
+			$('.hidden-content').addClass('esilla');
+		});
 
-	
-	$(document).on('click', '.muokkaa-painike', function(){
-	if($(this).attr("data-tila") == "valmis"){
-		$(this).attr("data-tila", "muokkaa");
-		var oparitArvo = $(this).siblings('.oparit').text();
-		var tyotunnitArvo = $(this).siblings('.tyotunnit').text();
-		$(this).siblings('.oparit').html('<input type="number" value="'+oparitArvo+'" />');
-		$(this).siblings('.tyotunnit').html('<input type="number" value="'+tyotunnitArvo+'" />');
-		$(this).text("Valmis");
-	} else {
-		$(this).attr("data-tila", "valmis");
-		var oparitArvo = $(this).siblings('.oparit').find('input').val();
-		var tyotunnitArvo = $(this).siblings('.tyotunnit').find('input').val();
-		$(this).siblings('.oparit').html(oparitArvo);
-		$(this).siblings('.tyotunnit').html(tyotunnitArvo);
-		var muokattavaId = $(this).parents('.yksi-kurssi').attr('id');
-		for(var i = 0; i < kaikkiKurssit.length; i++){
-			if(kaikkiKurssit[i].id == muokattavaId){
-				kaikkiKurssit[i].b = parseInt(oparitArvo);
-				kaikkiKurssit[i].w = parseInt(tyotunnitArvo);
-			}
-		}
-		for(var kurssit in kaikkiKurssit){
-		console.log(kaikkiKurssit[kurssit]);
-		}
-		$(this).text("Muokkaa");
-	}
-	});
+		$('.hide-content').on('click', function(){
+			$('.hidden-content').removeClass('esilla');
+			$('.show-content').addClass('esilla');
+		});
+		
+		$(document).on('click', '#lisaa-painike', lisaaKurssi);
+		$(document).on('click', '#muokkaa-painike', muokkaaKurssia);
+		$(document).on('click', '#poista-painike', poistaKurssi);
 
-	$('.optimoi').on('click', tulostaOptimi);
-	
-	$(document).on('click', '.poista-painike', function(){
-		$(this).parents('.yksi-kurssi').remove();
-		var poistettavaId = $(this).parents('.yksi-kurssi').attr('id');
-		for(var i = 0; i < kaikkiKurssit.length; i++){
-			if(kaikkiKurssit[i].id == poistettavaId){
-				kaikkiKurssit.splice(i, 1);
-			}
-		}
+		$(document).on('click', '#optimoi-painike', paivitaOptimi);
 	});
-	
-});
 </script>
 </body>
 </html>

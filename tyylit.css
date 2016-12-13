@@ -9,11 +9,39 @@ body {
 	font-family: "Arial", san-serif;
 }
 
-.yksi-kurssi > div{
+.otsikko, .sisalto {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.kaikki-kurssit, .optimoinnin-tulos {
+	margin: 30px 0;
+}
+
+.yksi-kurssi div{
 	display: inline-block;
-	padding: 0 5px 10px;
+	padding: 0 10px 10px 0;
+	width: 75px;
+}
+
+.yksi-kurssi .nimi {
+	width: 150px;
+}
+
+.yksi-kurssi input {
+	max-width: 100%;
 }
 
 .yksi-kurssi > button{
 	display: inline-block;
+	width: 100px;
+	margin-right: 10px;
+}
+
+.optimoinnin-tulos, .hidden-content, .show-content {
+	display: none;
+}
+
+.esilla {
+	display: block;
 }

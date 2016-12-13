@@ -71,8 +71,8 @@ function muokkaaKurssia(){
 		$(this).attr("data-tila", "muokkaa");
 		var oparitArvo = $(this).siblings('.oparit').text();
 		var tyotunnitArvo = $(this).siblings('.tyotunnit').text();
-		$(this).siblings('.oparit').html('<input class="form-control muokkaainput" type="number" min="1" value="'+oparitArvo+'" />');
-		$(this).siblings('.tyotunnit').html('<input class="form-control muokkaainput" type="number" min="1" value="'+tyotunnitArvo+'" />');
+		$(this).siblings('.oparit').html('<input class="form-control muokkaa-input" type="number" min="1" value="'+oparitArvo+'" />');
+		$(this).siblings('.tyotunnit').html('<input class="form-control muokkaa-input" type="number" min="1" value="'+tyotunnitArvo+'" />');
 		$(this).addClass("fa-check");
 		$(this).removeClass("fa-pencil");
 	}else{

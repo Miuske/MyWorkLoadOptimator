@@ -54,7 +54,7 @@ input.varoitus {
 	margin: 0px 30px 0px 0px;
 }
 
-.lisaakurssiinput {
+.lisaakurssi-input {
 	max-width: 200px;
 }
 
@@ -103,7 +103,7 @@ i {
 	margin-right: 10px;
 }
 
-.optimoiinput {
+.optimoi-input {
 	max-width: 80px;
 }
 

@@ -48,7 +48,9 @@ function lisaaKurssi(){
 	var opt = parseInt($('#lisaaopt').val());
 	var tunnit = parseInt($('#lisaatunnit').val());
 	
-	if(nimi == '' || opt == '' || tunnit == ''){
+	console.log("TESTI: " + opt);
+	
+	if(nimi == '' || isNaN(opt)  || isNaN(tunnit) ){
 		alert("Täytä kaikki tarvittavat kentät!");
 	}else{
 		kaikkiKurssit.push(new kurssi(nimi, opt, tunnit));

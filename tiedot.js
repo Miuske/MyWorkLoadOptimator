@@ -66,24 +66,28 @@ function muokkaaKurssia(){
 		$(this).siblings('.tyotunnit').html('<input type="number" value="'+tyotunnitArvo+'" />');
 		$(this).addClass("fa-check");
 		$(this).removeClass("fa-pencil");
-	} else {
-		$(this).attr("data-tila", "valmis");
+	}else{
 		var oparitArvo = $(this).siblings('.oparit').find('input').val();
 		var tyotunnitArvo = $(this).siblings('.tyotunnit').find('input').val();
-		$(this).siblings('.oparit').html(oparitArvo);
-		$(this).siblings('.tyotunnit').html(tyotunnitArvo);
-		var muokattavaId = $(this).parents('.yksi-kurssi').attr('id');
-		for(var i = 0; i < kaikkiKurssit.length; i++){
-			if(kaikkiKurssit[i].id == muokattavaId){
-				kaikkiKurssit[i].b = parseInt(oparitArvo);
-				kaikkiKurssit[i].w = parseInt(tyotunnitArvo);
+		if(oparitArvo == '' || tyotunnitArvo == ''){
+			alert("Täytä kaikki tarvittavat kentät!");
+		}else{
+			$(this).attr("data-tila", "valmis");
+			$(this).siblings('.oparit').html(oparitArvo);
+			$(this).siblings('.tyotunnit').html(tyotunnitArvo);
+			var muokattavaId = $(this).parents('.yksi-kurssi').attr('id');
+			for(var i = 0; i < kaikkiKurssit.length; i++){
+				if(kaikkiKurssit[i].id == muokattavaId){
+					kaikkiKurssit[i].b = parseInt(oparitArvo);
+					kaikkiKurssit[i].w = parseInt(tyotunnitArvo);
+				}
 			}
+			for(var kurssit in kaikkiKurssit){
+				console.log(kaikkiKurssit[kurssit]);
+			}
+			$(this).addClass("fa-pencil");
+			$(this).removeClass("fa-check");
 		}
-		for(var kurssit in kaikkiKurssit){
-		console.log(kaikkiKurssit[kurssit]);
-		}
-		$(this).addClass("fa-pencil");
-		$(this).removeClass("fa-check");
 	}
 }
 

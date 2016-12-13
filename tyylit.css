@@ -51,8 +51,19 @@ i {
 	cursor: pointer;
 }
 
+.kurssien-otsikot  {
+	margin-top: 30px;
+}
+
+.kurssien-otsikot div {
+	width: 150px;
+	font-weight: 700;
+	padding: 0 10px 10px 0;
+	float: left;
+}
+
 .kaikki-kurssit, .optimoinnin-tulos {
-	margin: 30px 0;
+	margin-bottom: 30px;
 }
 
 .yksi-kurssi div{

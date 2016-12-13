@@ -5,26 +5,30 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="tiedot.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="tyylit.css">
 </head>
 <body>
 <h1>My Workload Optimator</h1>
 <p>Silja Karesto & Mia Leskinen</p>
 
-<button class="show-content">Lisää kurssi</button>
+<!--button class="show-content">Lisää kurssi</button-->
+
 <div class="hidden-content">
 	<form id="lisaaKurssiForm">
 		<h3>Lisää kurssi</h3>
 		<p>Kurssin nimi: <input id="lisaakurssi" type="text" placeholder="Kurssin nimi"></input>
 		Opintopisteet: <input id="lisaaopt" type="text" placeholder="3"></input>
 		Tunnit: <input id="lisaatunnit" type="text" placeholder="50"></input>
-		<button id="lisaa-painike" type="button" onclick="lisaaUusiKurssi();">Lisää kurssi</button><br>
-		<button class="hide-content">Valmis</button>
+		<!--button id="lisaa-painike" type="button" onclick="lisaaUusiKurssi();">Lisää kurssi</button><br-->
+		<i id="lisaa-painike" class="lisaa-painike fa fa-arrow-right fa-lg"></i>
+		<!--button class="hide-content">Valmis</button-->
+		<i class="hide-content fa fa-check fa-lg"></i>
 		</p>
 	</form>
 </div>
 
-<h3>Kurssit</h3>
+<h3>Kurssit <i class="show-content fa fa-plus"></i></h3>
 <div class="kaikki-kurssit clearfix">
 </div>
 <p>Optimoi halutessasi muun tuntimäärän mukaan</p>
@@ -79,6 +83,8 @@ $(document).ready(function(){
 	});
 
 	$('.optimoi').on('click', tulostaOptimi);
+	
+	$('.lisaa-painike').on('click', lisaaUusiKurssi);
 	
 	$(document).on('click', '.poista-painike', function(){
 		$(this).parents('.yksi-kurssi').remove();

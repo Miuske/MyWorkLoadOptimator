@@ -52,8 +52,12 @@ function lisaaUusiKurssi(){
 	console.log("UUDEN KURSSIN OPT: " + uusiopt);
 	console.log("UUDEN KURSSIN TUNNIT: " + uusitunnit);
 	
-	kaikkiKurssit.push(new kurssi(uusikurssi, uusiopt, uusitunnit));
-	console.log(kaikkiKurssit);
+	if(uusikurssi == '' || uusiopt == '' || uusitunnit == ''){
+		alert("Täytä kaikki tarvittavat kentät!");
+	}else{
+		kaikkiKurssit.push(new kurssi(uusikurssi, uusiopt, uusitunnit));
+		console.log(kaikkiKurssit);
+	}
 
 	paivitaLista();
 

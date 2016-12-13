@@ -7,12 +7,12 @@ function kurssi(kurssinnimi, opintopisteet, tyomaara) {
 	this.id = kurssinnimi.replace(/\s/g, '');
 }
 
-kaikkiKurssit.push(new kurssi("projekti", 20, 200));
-kaikkiKurssit.push(new kurssi("algoritmit", 2, 40));
-kaikkiKurssit.push(new kurssi("videot", 5, 20));
-kaikkiKurssit.push(new kurssi("keikka", 1, 10));
-kaikkiKurssit.push(new kurssi("ohjelmointi", 9, 90));
-kaikkiKurssit.push(new kurssi("lopputyö", 17, 100));
+kaikkiKurssit.push(new kurssi("Projekti", 20, 200));
+kaikkiKurssit.push(new kurssi("Algoritmit", 2, 40));
+kaikkiKurssit.push(new kurssi("Videot", 5, 20));
+kaikkiKurssit.push(new kurssi("Keikka", 1, 10));
+kaikkiKurssit.push(new kurssi("Ohjelmointi", 9, 90));
+kaikkiKurssit.push(new kurssi("Lopputyö", 17, 100));
 
 function paivitaLista(){
 	$('.kaikki-kurssit').html("");
@@ -32,10 +32,10 @@ function paivitaOptimi(){
 	var tunnitYhteensa = 0;
 	$('.lopputulos').html('');
 		for(var i = 0; i < tulos['set'].length; i++){
-		$('.lopputulos').append('<span>'+tulos['set'][i].nimi+': '+tulos['set'][i].w+' tuntia, '+tulos['set'][i].b+' opintopistettä</span><br/>');
+		$('.lopputulos').append('<span><b>'+tulos['set'][i].nimi+': </b>'+tulos['set'][i].w+' tuntia, '+tulos['set'][i].b+' opintopistettä</span><br/>');
 		tunnitYhteensa += tulos['set'][i].w;
 	}
-	$('.lopputulos').append('<br/><p>Yhteensä: '+tunnitYhteensa+' tuntia, '+tulos.maxValue+' opintopistettä</p>');
+	$('.lopputulos').append('<br/><p class="highlight"><b>Yhteensä: </b>'+tunnitYhteensa+' tuntia, '+tulos.maxValue+' opintopistettä</p>');
 }
 
 function lisaaKurssi(){

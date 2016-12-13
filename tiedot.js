@@ -17,7 +17,7 @@ kaikkiKurssit.push(new kurssi("lopputyö", 17, 100));
 function paivitaLista(){
 	$('.kaikki-kurssit').html("");
 	for(var kurssi in kaikkiKurssit){
-		$('.kaikki-kurssit').append('<div class="yksi-kurssi" id="'+kaikkiKurssit[kurssi].id+'"><div class="nimi">'+kaikkiKurssit[kurssi].nimi+'</div><div class="oparit">'+kaikkiKurssit[kurssi].b+'</div><div class="tyotunnit">'+kaikkiKurssit[kurssi].w+'</div><button type="button" id="muokkaa-painike" data-tila="valmis">Muokkaa</button> <i id="poista-painike" class="fa fa-trash-o fa-lg"></i></div>');
+		$('.kaikki-kurssit').append('<div class="yksi-kurssi" id="'+kaikkiKurssit[kurssi].id+'"><div class="nimi">'+kaikkiKurssit[kurssi].nimi+'</div><div class="oparit">'+kaikkiKurssit[kurssi].b+'</div><div class="tyotunnit">'+kaikkiKurssit[kurssi].w+'</div><i id="muokkaa-painike" class="fa fa-pencil" data-tila="valmis"></i> <i id="poista-painike" class="fa fa-trash-o fa-lg"></i></div>');
 	}
 }
 
@@ -64,7 +64,8 @@ function muokkaaKurssia(){
 		var tyotunnitArvo = $(this).siblings('.tyotunnit').text();
 		$(this).siblings('.oparit').html('<input type="number" value="'+oparitArvo+'" />');
 		$(this).siblings('.tyotunnit').html('<input type="number" value="'+tyotunnitArvo+'" />');
-		$(this).text("Valmis");
+		$(this).addClass("fa-check");
+		$(this).removeClass("fa-pencil");
 	} else {
 		$(this).attr("data-tila", "valmis");
 		var oparitArvo = $(this).siblings('.oparit').find('input').val();
@@ -81,7 +82,8 @@ function muokkaaKurssia(){
 		for(var kurssit in kaikkiKurssit){
 		console.log(kaikkiKurssit[kurssit]);
 		}
-		$(this).text("Muokkaa");
+		$(this).addClass("fa-pencil");
+		$(this).removeClass("fa-check");
 	}
 }
 

@@ -13,13 +13,17 @@ body {
 }
 
 #frame {
-	width: 80%;
+	width: 65%;
 	margin: auto;
 	padding: 30px 60px 80px 60px;
 }
 
 @media screen and (max-width: 850px){
 	#frame {
+		width: 100%;
+	}
+	
+	.kaikki-kurssit {
 		width: 100%;
 	}
 }

@@ -11,14 +11,18 @@
 <h1>My Workload Optimator</h1>
 <p>Silja Karesto & Mia Leskinen</p>
 
-<form>
-	<h3>Lisää kurssi</h3>
-	<p>Kurssin nimi: <input id="lisaakurssi" type="text"></input>
-	Opintopisteet: <input id="lisaaopt" type="text"></input>
-	Tunnit: <input id="lisaatunnit" type="text"></input>
-	<button id="lisaa-painike" type="button" onclick="lisaaUusiKurssi();">Lisää kurssi</button>
-	</p>
-</form>
+<button class="show-content">Lisää kurssi</button>
+<div class="hidden-content">
+	<form id="lisaaKurssiForm">
+		<h3>Lisää kurssi</h3>
+		<p>Kurssin nimi: <input id="lisaakurssi" type="text" placeholder="Kurssin nimi"></input>
+		Opintopisteet: <input id="lisaaopt" type="text" placeholder="3"></input>
+		Tunnit: <input id="lisaatunnit" type="text" placeholder="50"></input>
+		<button id="lisaa-painike" type="button" onclick="lisaaUusiKurssi();">Lisää kurssi</button><br>
+		<button class="hide-content">Valmis</button>
+		</p>
+	</form>
+</div>
 
 <h3>Kurssit</h3>
 <div class="kaikki-kurssit clearfix">
@@ -32,7 +36,16 @@
 </div>
 <script>
 $(document).ready(function(){
-
+	$('.hidden-content').hide();
+	
+	$('.show-content').on('click', function(){
+		$('.hidden-content').show();
+	});
+	
+	$('.hide-content').on('click', function(){
+		$('.hidden-content').hide();
+	});
+	
 	paivitaLista();
 	//console.log(knapsack([{w:200, b: 20},{w:40,b:2},{w:20,b:5},{w:10,b:1},{w:90,b:9},{w:100,b:17}], 200));
 

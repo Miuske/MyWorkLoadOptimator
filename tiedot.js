@@ -56,4 +56,5 @@ function lisaaUusiKurssi(){
 	console.log(kaikkiKurssit);
 
 	paivitaLista();
+
 }

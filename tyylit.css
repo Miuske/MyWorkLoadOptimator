@@ -8,6 +8,7 @@ html {
 
 body {
 	font-family: 'Roboto', sans-serif;
+	color: #333;
 }
 
 #frame {
@@ -24,7 +25,11 @@ body {
 }
 
 .sisalto {
-	padding: 10px 35px 20px 35px; 
+	padding: 10px 35px 20px 35px;
+}
+
+i {
+	padding: 0px 3px 0px 3px;
 }
 
 .kaikki-kurssit, .optimoinnin-tulos {

@@ -59,6 +59,8 @@ function lisaaUusiKurssi(){
 		console.log(kaikkiKurssit);
 	}
 
+	$('#lisaaKurssiForm')[0].reset();
+	
 	paivitaLista();
 
 }

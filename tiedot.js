@@ -44,14 +44,26 @@ function paivitaOptimi(){
 }
 
 function lisaaKurssi(){
+	$('#lisaaKurssiForm .varoitus').text('');
+	$('#lisaaKurssiForm input').removeClass('varoitus');
 	var nimi = $('#lisaakurssi').val();
 	var opt = parseInt($('#lisaaopt').val());
 	var tunnit = parseInt($('#lisaatunnit').val());
-	
-	console.log("TESTI: " + opt);
-	
+		
 	if(nimi == '' || isNaN(opt)  || isNaN(tunnit) ){
-		alert("Täytä kaikki tarvittavat kentät!");
+		$('#lisaaKurssiForm .varoitus').text('Täytä kaikki kentät');
+		$('#lisaaKurssiForm input').each(function(){
+			if($(this).val() == ''){
+				$(this).addClass('varoitus');
+			}
+		});	
+	}else if (opt < 1 || tunnit < 1){
+		$('#lisaaKurssiForm .varoitus').text('Arvo ei voi olla alle 1');
+		$('#lisaaKurssiForm input[type="number"]').each(function(){
+			if($(this).val() < 1){
+				$(this).addClass('varoitus');
+			}
+		});
 	}else{
 		kaikkiKurssit.push(new kurssi(nimi, opt, tunnit));
 		$('#lisaaKurssiForm')[0].reset();
@@ -64,15 +76,29 @@ function muokkaaKurssia(){
 		$(this).attr("data-tila", "muokkaa");
 		var oparitArvo = $(this).siblings('.oparit').text();
 		var tyotunnitArvo = $(this).siblings('.tyotunnit').text();
-		$(this).siblings('.oparit').html('<input type="number" value="'+oparitArvo+'" />');
-		$(this).siblings('.tyotunnit').html('<input type="number" value="'+tyotunnitArvo+'" />');
+		$(this).siblings('.oparit').html('<input type="number" min="1" value="'+oparitArvo+'" />');
+		$(this).siblings('.tyotunnit').html('<input type="number" min="1" value="'+tyotunnitArvo+'" />');
 		$(this).addClass("fa-check");
 		$(this).removeClass("fa-pencil");
 	}else{
+		$(this).parents('.yksi-kurssi').find('span').remove();
+		$('.yksi-kurssi input').removeClass('varoitus');
 		var oparitArvo = $(this).siblings('.oparit').find('input').val();
 		var tyotunnitArvo = $(this).siblings('.tyotunnit').find('input').val();
 		if(oparitArvo == '' || tyotunnitArvo == ''){
-			alert("Täytä kaikki tarvittavat kentät!");
+			$(this).parents('.yksi-kurssi').append('<span class="varoitus">Täytä kaikki kentät</span>');
+			$('.yksi-kurssi input').each(function(){
+				if($(this).val() == ''){
+					$(this).addClass('varoitus');
+				}
+			});			
+		}else if(oparitArvo < 1 || tyotunnitArvo < 1){
+			$(this).parents('.yksi-kurssi').append('<span class="varoitus">Arvo ei voi olla alle 1</span>');
+			$('.yksi-kurssi input[type="number"]').each(function(){
+				if($(this).val() < 1){
+					$(this).addClass('varoitus');
+				}
+			});	
 		}else{
 			$(this).attr("data-tila", "valmis");
 			$(this).siblings('.oparit').html(oparitArvo);
@@ -84,9 +110,7 @@ function muokkaaKurssia(){
 					kaikkiKurssit[i].w = parseInt(tyotunnitArvo);
 				}
 			}
-			for(var kurssit in kaikkiKurssit){
-				console.log(kaikkiKurssit[kurssit]);
-			}
+
 			$(this).addClass("fa-pencil");
 			$(this).removeClass("fa-check");
 		}

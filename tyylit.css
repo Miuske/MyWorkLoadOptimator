@@ -24,6 +24,15 @@ body {
 	padding: 10px 35px 20px 35px;
 }
 
+.varoitus {
+	margin-top: 10px;
+	color: red;
+}
+
+input.varoitus {
+	border-color: red;
+}
+
 .sisalto {
 	padding: 10px 35px 20px 35px;
 }
@@ -39,6 +48,7 @@ body {
 
 i {
 	padding: 0px 3px 0px 3px;
+	cursor: pointer;
 }
 
 .kaikki-kurssit, .optimoinnin-tulos {
